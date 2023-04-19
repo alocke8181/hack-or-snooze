@@ -40,5 +40,12 @@ function navSubmitClick(evt){
   console.debug("submitClick", evt);
   $submitForm.show();
 }
-$navSubmit.on("click", navSubmitClick());
-$submitButton.click(function(event){getSubmittedStory()});
+$navSubmit.on("click", navSubmitClick);
+$submitButton.click(function(event){getSubmittedStory});
+
+function navFavClick(evt){
+  console.debug("favClick", evt);
+  hidePageComponents();
+  putFavoritesOnPage();
+}
+$favButton.on("click", navFavClick);

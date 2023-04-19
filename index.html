@@ -38,7 +38,9 @@
     <a class="nav-link" href="#" id="nav-all">Hack or Snooze</a>
   </div>
   <div class="navbar-links">
-    <a class="nav-link" href="#" id="nav-submit">Submit</a>
+    <a class="nav-link" href="#" id="nav-submit">Submit</a> | 
+    <a class="nav-link" href="#" id="nav-favorites">Favorites</a> |
+    <a class="nav-link" href="#" id="nav-own">My Stories</a>
   </div>
   <div class="nav-right">
     <a class="nav-link" href="#" id="nav-login">login/signup</a>
@@ -52,7 +54,7 @@
 <!-- area for stories (all stories, user stories, favorites) -->
 <section class="stories-container container">
 
-  <form id="submit-form" style="display:none">
+  <form id="submit-form" style="display:none" >
     <div>
       <label for="author-input">author</label>
       <input type="text" id="author-input" placeholder="author name">
@@ -74,6 +76,8 @@
 
   <!-- List of all stories -->
   <ol id="all-stories-list" class="stories-list"></ol>
+
+  <ol id="favorite-stories" class="stories-list"></ol>
 
 </section>
 

@@ -201,4 +201,33 @@ class User {
       return null;
     }
   }
+
+  async addFavorite(story){
+    this.favorites.push(story);
+    let response = await axios({
+      url: `${BASE_URL}/users/${this.username}/favorites/${story.storyId}`,
+      method: "POST",
+      data: {token: this.loginToken}
+    });
+  }
+
+  async removeFavorite(story){
+    this.favorites = this.favorites.filter(eachStory => eachStory.storyId !== story.storyId);
+
+    let response = await axios({
+      url: `${BASE_URL}/users/${this.username}/favorites/${story.storyId}`,
+      method: "DELETE",
+      data: {token: this.loginToken}
+    });
+  }
+
+  isFavorite(story){
+    if(this.favorites.some(eachStory => eachStory.storyId === story.storyId)){
+      return "fas";
+    }else{
+      return "far";
+    }
+  }
+
 }
+

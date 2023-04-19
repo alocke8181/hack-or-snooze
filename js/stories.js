@@ -25,6 +25,8 @@ function generateStoryMarkup(story) {
   const hostName = story.getHostName();
   return $(`
       <li id="${story.storyId}">
+        <span class="star">
+          <i class="fa-star ${currentUser.isFavorite(story)}"></i>
         <a href="${story.url}" target="a_blank" class="story-link">
           ${story.title}
         </a>
@@ -61,4 +63,37 @@ function getSubmittedStory(){
   putStoriesOnPage();
   $submitForm.hide(); 
 }
+
+function putFavoritesOnPage(){
+  $favList.empty();
+
+  if(currentUser.favorites.length === 0){
+    $favList.append("<h5>No favorites!</h5>");
+  }else{
+    for(let eachStory of currentUser.favorites){
+      let $storyMarkup = generateStoryMarkup(eachStory);
+      $favList.append($storyMarkup);
+      console.log("fuck you");
+    }
+  }
+  $favList.show();
+}
+
+async function toggleFavorite(event){
+  let $target = $(event.target);
+  let $targetLI = $target.parent().parent();
+  let storyId = $targetLI.attr("id");
+  let story = storyList.stories.find(eachStory => eachStory.storyId === storyId);
+
+  if($target.hasClass("far")){
+    await currentUser.addFavorite(story);
+    $target.addClass("fas");
+    $target.removeClass("far");
+  }else{
+    await currentUser.removeFavorite(story);
+    $target.removeClass("fas");
+    $target.addClass("far");
+  }
+}
+$allStoriesList.on("click", ".star", toggleFavorite);
 

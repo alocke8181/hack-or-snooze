@@ -3,6 +3,7 @@
 body {
   font-family: Arimo, sans-serif;
   margin: 8px 7.5vw;
+  background-color: lightblue;
 }
 
 h1 {
@@ -120,4 +121,8 @@ form > hr {
     max-width: 900px;
     margin: 8px auto;
   }
+}
+
+.star{
+  cursor: pointer;
 }
