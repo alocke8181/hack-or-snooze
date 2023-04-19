@@ -37,14 +37,14 @@ function updateNavOnLogin() {
 
 //When a user clicks the submit button, show the form
 function navSubmitClick(evt){
-  console.debug("submitClick", evt);
+  console.debug("submitClick");
   $submitForm.show();
 }
 $navSubmit.on("click", navSubmitClick);
 $submitButton.click(function(event){getSubmittedStory});
 
 function navFavClick(evt){
-  console.debug("favClick", evt);
+  console.debug("favClick");
   hidePageComponents();
   putFavoritesOnPage();
 }
