@@ -54,16 +54,19 @@ function putStoriesOnPage() {
 }
 
 //Gets the data from the form and creates a new story
-function getSubmittedStory(){
+async function getSubmittedStory(){
+  console.debug("getSubmittedStory");
   let title = $titleInput.val();
   let author = $authorInput.val();
   let url = $urlInput.val();
   
-  storyList.addStory(currentUser,{title, author, url});
+  await storyList.addStory(currentUser,{title, author, url});
   putStoriesOnPage();
   $submitForm.hide(); 
 }
+$submitButton.on("click", getSubmittedStory);
 
+//Puts the users favorites on the page
 function putFavoritesOnPage(){
   $favList.empty();
 
@@ -73,12 +76,12 @@ function putFavoritesOnPage(){
     for(let eachStory of currentUser.favorites){
       let $storyMarkup = generateStoryMarkup(eachStory);
       $favList.append($storyMarkup);
-      console.log("fuck you");
     }
   }
   $favList.show();
 }
 
+//Toggles whether a story is a favorite
 async function toggleFavorite(event){
   let $target = $(event.target);
   let $targetLI = $target.parent().parent();
@@ -97,3 +100,40 @@ async function toggleFavorite(event){
 }
 $allStoriesList.on("click", ".star", toggleFavorite);
 
+//Puts the users stories on the page
+function putUserStoriesOnPage(){
+  $userList.empty();
+  if(currentUser.ownStories.length ===0){
+    $userList.append("<h5>You have not submitted any stories.</h5>");
+  }else{
+    currentUser.ownStories.forEach(eachStory => {
+      let $storyMarkup = generateStoryMarkup(eachStory);
+      let $trashcan = makeTrashcan();
+      $storyMarkup.prepend($trashcan);
+      $userList.append($storyMarkup);
+    });
+  }
+  $userList.show();
+}
+
+async function deleteStory(event){
+  console.debug("removeStory");
+  let story = $(event.target).parent().parent();
+  let storyId = story.attr("id");
+  
+  await storyList.removeStory(currentUser, storyId);
+  putUserStoriesOnPage();
+}
+
+//Helper function to make the trashcan markup
+function makeTrashcan(){
+  return $(`
+      <span class="trash-can">
+        <i class="fas fa-trash-alt"></i> |
+      </span>
+      `);
+}
+
+$userList.on("mouseover", ".trash-can", function(event){event.target.style.color="red";});
+$userList.on("mouseout", ".trash-can", function(event){event.target.style.color="";});
+$userList.on("click", ".trash-can", deleteStory);

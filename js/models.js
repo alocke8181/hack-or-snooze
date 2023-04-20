@@ -84,6 +84,18 @@ class StoryList {
     this.stories.unshift(newStory);
     user.ownStories.unshift(newStory);
   }
+
+  async removeStory(user, storyId){
+    this.stories = this.stories.filter(eachStory => eachStory.storyId !== storyId);
+    user.ownStories = user.ownStories.filter(eachStory => eachStory.storyId !== storyId);
+    user.favorites = user.favorites.filter(eachStory => eachStory.storyId !== storyId);
+    let response = await axios({
+      url : `${BASE_URL}/stories/${storyId}`,
+      method: "DELETE",
+      data: {token:user.loginToken}
+    });
+  }
+
 }
 
 

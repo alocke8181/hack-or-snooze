@@ -41,11 +41,19 @@ function navSubmitClick(evt){
   $submitForm.show();
 }
 $navSubmit.on("click", navSubmitClick);
-$submitButton.click(function(event){getSubmittedStory});
 
+
+//When a user clicks the favorites button, show the favorites
 function navFavClick(evt){
   console.debug("favClick");
   hidePageComponents();
   putFavoritesOnPage();
 }
 $favButton.on("click", navFavClick);
+
+function navUserClick(evt){
+  console.debug("userClick");
+  hidePageComponents();
+  putUserStoriesOnPage();
+}
+$userButton.on("click", navUserClick);
