@@ -10,7 +10,7 @@ let currentUser;
 /** Handle login form submission. If login ok, sets up the user instance */
 
 async function login(evt) {
-  console.debug("login", evt);
+  console.debug("login");
   evt.preventDefault();
 
   // grab the username and password
@@ -36,7 +36,7 @@ $loginForm.on("submit", login);
 /** Handle signup form submission. */
 
 async function signup(evt) {
-  console.debug("signup", evt);
+  console.debug("signup");
   evt.preventDefault();
 
   const name = $("#signup-name").val();
@@ -45,8 +45,12 @@ async function signup(evt) {
 
   // User.signup retrieves user info from API and returns User instance
   // which we'll make the globally-available, logged-in user.
-  currentUser = await User.signup(username, password, name);
-
+  try{
+    currentUser = await User.signup(username, password, name);
+  }catch(error){
+    alert(error.response.data.error.message);
+    return;
+  }
   saveUserCredentialsInLocalStorage();
   updateUIOnUserLogin();
 
@@ -61,7 +65,7 @@ $signupForm.on("submit", signup);
  */
 
 function logout(evt) {
-  console.debug("logout", evt);
+  console.debug("logout");
   localStorage.clear();
   location.reload();
 }
