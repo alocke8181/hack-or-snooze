@@ -134,5 +134,17 @@ function putUserInfoOnPage(){
     <div><b>Username:</b> ${username}</div>
     <div><b>Account Created On:</b> ${createdAt}</div>
   `));
-  $userInfo.show();
+  $userInfoCont.show();
+}
+
+async function updateUserPassword(){
+  let oldPassword = $oldPasswordInput.val();
+  let newPassword = $newPasswordInput.val()
+  $oldPasswordInput.val("");
+  $newPasswordInput.val("");
+  try{
+    await currentUser.updatePassword(oldPassword, newPassword);
+  }catch(error){
+    alert(error.message);
+  }
 }

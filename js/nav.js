@@ -7,7 +7,7 @@
 /** Show main list of all stories when click site name */
 
 function navAllStories(evt) {
-  console.debug("navAllStories", evt);
+  console.debug("navAllStories");
   hidePageComponents();
   putStoriesOnPage();
 }
@@ -17,7 +17,7 @@ $body.on("click", "#nav-all", navAllStories);
 /** Show login/signup on click on "login" */
 
 function navLoginClick(evt) {
-  console.debug("navLoginClick", evt);
+  console.debug("navLoginClick");
   hidePageComponents();
   $loginForm.show();
   $signupForm.show();
@@ -51,6 +51,7 @@ function navFavClick(evt){
 }
 $favButton.on("click", navFavClick);
 
+//When a user clicks on their stories, show their stories
 function navUserClick(evt){
   console.debug("userClick");
   hidePageComponents();
@@ -58,9 +59,16 @@ function navUserClick(evt){
 }
 $userButton.on("click", navUserClick);
 
+//When a user clicks on their profile, show their profile
 function navProfileClick(evt){
   console.debug("profileClick");
   hidePageComponents();
   putUserInfoOnPage();
 }
 $navUserProfile.on("click",navProfileClick);
+
+function updatePassword(evt){
+  console.debug("updatePassword");
+  updateUserPassword();
+}
+$updatePasswordButton.on("click", updatePassword);

@@ -126,8 +126,20 @@
 </section>
 
 <!-- User Info Section-->
-<section id="user-info-container" class = "account-forms-container container">
-  <h2>User Information</h2>
+<section id="user-info-container" class = "account-forms-container container hidden">
+  <section id="user-information"></section>
+  <hr>
+  <form action="#" id="change-password-form" class="account-form" method="post">
+    <div class="old-password-input">
+      <label for="old-password">Current Password</label>
+      <input id="old-password" type="password">
+    </div>
+    <div class="updated-password-input">
+      <label for="updated-password">New Password</label>
+      <input id="updated-password" type="password">
+    </div>
+    <button id = "update-button" type="submit">Update Password</button>
+  </form>
 </section>
 
 

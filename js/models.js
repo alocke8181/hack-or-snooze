@@ -215,6 +215,37 @@ class User {
     }
   }
 
+  //Function to update the user's password with checking the old password
+  async updatePassword(oldPassword, newPassword){
+    try{
+      const confirmResponse = await axios({
+        url: `${BASE_URL}/users/${this.username}`,
+        method: "GET",
+        params: {token: this.token},
+      });
+  }catch(error){
+    console.log(error);
+    throw new Error(error.response.data.error.message);
+  }
+    if(oldPassword === response.data.password){
+      try{
+        const updateResponse = await axios({
+          url: `${BASE_URL}/users/${this.username}`,
+          method: "PATCH",
+          params: {
+            token : this.token,
+            user : {password : newPassword}
+          }
+        });
+    }catch(error){
+      console.log(error);
+      throw new Error(error.response.data.error.message);
+    }
+    }else{
+      throw new Error("Incorrect Current Password");
+    }
+  }
+
   async addFavorite(story){
     this.favorites.push(story);
     let response = await axios({
