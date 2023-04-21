@@ -24,8 +24,9 @@ class Story {
   /** Parses hostname out of URL and returns it. */
 
   getHostName() {
-    // UNIMPLEMENTED: complete this function!
-    return "hostname.com";
+    let backURL = this.url.split("//")[1];
+    let hostName = backURL.split("/")[0];
+    return hostName;
   }
 }
 
