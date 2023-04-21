@@ -57,3 +57,10 @@ function navUserClick(evt){
   putUserStoriesOnPage();
 }
 $userButton.on("click", navUserClick);
+
+function navProfileClick(evt){
+  console.debug("profileClick");
+  hidePageComponents();
+  putUserInfoOnPage();
+}
+$navUserProfile.on("click",navProfileClick);

@@ -19,8 +19,12 @@ async function login(evt) {
 
   // User.login retrieves user info from API and returns User instance
   // which we'll make the globally-available, logged-in user.
-  currentUser = await User.login(username, password);
-
+  try{
+    currentUser = await User.login(username, password);
+  }catch(error){
+    alert(error.response.data.error.message);
+    return; 
+  }
   $loginForm.trigger("reset");
 
   saveUserCredentialsInLocalStorage();
@@ -113,4 +117,18 @@ function updateUIOnUserLogin() {
   $allStoriesList.show();
 
   updateNavOnLogin();
+}
+
+function putUserInfoOnPage(){
+  $userInfo.empty()
+  let name = currentUser.name;
+  let username = currentUser.username;
+  let createdAt = currentUser.createdAt.split("T")[0];
+  $userInfo.append($(`
+    <h2>User Profile Information</h2>
+    <div><b>Name:</b> ${name}</div>
+    <div><b>Username:</b> ${username}</div>
+    <div><b>Account Created On:</b> ${createdAt}</div>
+  `));
+  $userInfo.show();
 }

@@ -26,7 +26,7 @@ function generateStoryMarkup(story) {
   return $(`
       <li id="${story.storyId}">
         <span class="star">
-          <i class="fa-star ${currentUser.isFavorite(story)}"></i>
+          <i class="fa-star ${isItAFavorite(story)}"></i>
         <a href="${story.url}" target="a_blank" class="story-link">
           ${story.title}
         </a>
@@ -35,6 +35,14 @@ function generateStoryMarkup(story) {
         <small class="story-user">posted by ${story.username}</small>
       </li>
     `);
+}
+
+function isItAFavorite(story){
+  if(currentUser === undefined){
+    return "far";
+  }else{
+    return currentUser.isFavorite(story);
+  }
 }
 
 /** Gets list of stories from server, generates their HTML, and puts on page. */

@@ -3,7 +3,7 @@
 body {
   font-family: Arimo, sans-serif;
   margin: 8px 7.5vw;
-  background-color: lightblue;
+  background-image: linear-gradient(to right, lightblue 0%, orchid , lightblue 100%);
 }
 
 h1 {
@@ -129,4 +129,8 @@ form > hr {
 
 .trash-can{
   cursor: pointer;
+}
+
+.star .fas{
+  color:gold;
 }

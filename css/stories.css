@@ -22,7 +22,7 @@
 .story-link {
   color: black;
   font-size: 0.85rem;
-  font-weight: normal;
+  font-weight: bold;
   margin: 18px 0;
 }
 
@@ -32,12 +32,18 @@
 
 .story-author {
   margin-left: 2em;
+  color: green;
 }
 
 .story-user {
   display: block;
+  color: goldenrod;
 }
 
 #user-stories{
   list-style-type: none;
+}
+
+.story-hostname{
+  font-style: italic;
 }
