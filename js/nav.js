@@ -29,6 +29,8 @@ $navLogin.on("click", navLoginClick);
 
 function updateNavOnLogin() {
   console.debug("updateNavOnLogin");
+  hidePageComponents();
+  putStoriesOnPage();
   $(".main-nav-links").show();
   $navLogin.hide();
   $navLogOut.show();
@@ -67,8 +69,8 @@ function navProfileClick(evt){
 }
 $navUserProfile.on("click",navProfileClick);
 
-function updatePassword(evt){
-  console.debug("updatePassword");
-  updateUserPassword();
-}
-$updatePasswordButton.on("click", updatePassword);
+// function updatePassword(evt){
+//   console.debug("updatePassword");
+//   updateUserPassword();
+// }
+// $updatePasswordButton.on("click", updatePassword);

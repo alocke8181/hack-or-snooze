@@ -29,9 +29,9 @@ const $titleInput = $("#title-input");
 const $urlInput = $("#url-input");
 const $submitButton = $("#submit-button");
 
-const $oldPasswordInput = $("#old-password");
-const $newPasswordInput = $("#updated-password");
-const $updatePasswordButton = $("#update-button");
+// const $oldPasswordInput = $("#old-password");
+// const $newPasswordInput = $("#updated-password");
+// const $updatePasswordButton = $("#update-button");
 /** To make it easier for individual components to show just themselves, this
  * is a useful function that hides pretty much everything on the page. After
  * calling this, individual components can re-show just what they want.
